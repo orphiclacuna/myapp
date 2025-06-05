@@ -9,12 +9,11 @@ pool:
   name: Default
   demands:
     - agent.name -equals Stardust
-  vmImage: ubuntu-latest
-
+  
 steps:
 - task: Maven@3
   inputs:
-    mavenPomFile: 'pom.xml'
+    mavenPomFile: 'myapp/pom.xml'
     goals: 'clean package'
     options: '-B'
     PublishJUnitResults: true
@@ -32,6 +31,6 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: 'target'
+    PathtoPublish: 'myapp/target'
     ArtifactName: 'MyArtifact'
     publishLocation: 'Container'
